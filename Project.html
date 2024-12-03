@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event-Based Few-Shot Learning Human Activity Recognition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f0f4f7, #cce0ff);
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        section {
+            padding: 20px;
+            margin: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1,
+        h2 {
+            color: #0056b3;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            position: relative;
+            /* Changed from fixed to relative */
+            margin-top: 20px;
+            /* Adds space above the footer */
+        }
+
+        a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Event-Based Few-Shot Learning Human Activity Recognition</title>
+    </head>
+
+<body>
+    <header>
+        <h1>Event-Based Few-Shot Learning (FSL) for Human Activity Recognition</h1>
+        <p><strong>Author:</strong> Mohammad Belal Irshaid</p>
+        <p><strong>Department:</strong> Mechanical and Nuclear Engineering, Khalifa University</p>
+    </header>
+
+    <section>
+        <h2>Project Overview</h2>
+        <p>This project focuses on the recognition of fine-grained human activities using Few-Shot Learning (FSL)
+            combined with neuromorphic sensing technology. By leveraging a Dynamic Vision Sensor (DVS), real-time
+            event-based data streams are captured, which represent changes in visual scenes rather than traditional
+            frame-based data. This enables highly efficient and low-latency recognition of human activities.</p>
+
+        <p>The core of this project is built upon Prototypical Networks, a metric-based learning approach, which allows
+            the system to classify human activities with minimal labeled data. The framework addresses the challenge of
+            catastrophic forgetting—where new information overwrites previous knowledge—by preserving support prototypes
+            and regularizing feature spaces.</p>
+
+        <p>The ultimate goal of this project is to provide robust, scalable, and low-data-requirement solutions for
+            real-time applications in fields such as:
+        </p>
+        <ul>
+            <li><strong>Robotics:</strong> For autonomous systems to adapt to human behaviors in real-time.</li>
+            <li><strong>Surveillance and Security:</strong> Efficient detection of human activities in sensitive
+                environments with minimal training data.</li>
+            <li><strong>Healthcare:</strong> For monitoring patient activities and ensuring safety in medical
+                facilities.</li>
+            <li><strong>Smart Environments:</strong> Providing real-time activity recognition for smart homes,
+                factories, and public spaces.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Methodology</h2>
+        <ul>
+            <li>
+                <strong>Data Acquisition:</strong>
+                Data is collected using a neuromorphic DVS camera that outputs event-based data instead of conventional
+                frames. Integrated into the ROS2 (Robot Operating System 2) framework, this setup allows the streaming
+                of high-temporal-resolution events, which are then used for human activity recognition tasks such as
+                walking, jumping, and boxing.
+            </li>
+            <li>
+                <strong>Event Extraction and Video Conversion:</strong>
+                The event data from the DVS is extracted from ROS2 topics and converted into traditional video frames.
+                These frames serve as input for the classification model. The conversion process involves handling raw
+                event streams and transforming them into a video format suitable for machine learning models.
+            </li>
+            <li>
+                <strong>Few-Shot Learning Framework:</strong>
+                The Prototypical Networks model is used for activity classification by leveraging metric-based learning.
+                It computes prototype vectors for each class by averaging the embeddings of the support examples. The
+                query samples are classified based on the Euclidean distance between their embeddings and these
+                prototype vectors.
+            </li>
+            <li>
+                <strong>Mitigating Catastrophic Forgetting:</strong>
+                To prevent the system from forgetting previously learned classes when introduced to new ones, the
+                framework implements several strategies:
+                <ul>
+                    <li><strong>Prototype Preservation:</strong> Retaining support prototypes throughout training and
+                        evaluation to ensure class-specific knowledge is maintained.</li>
+                    <li><strong>Feature Space Regularization:</strong> Preventing distortions in the embedding space,
+                        which could otherwise lead to misclassification.</li>
+                    <li><strong>Balanced Query Updates:</strong> Gradual integration of new query information without
+                        disrupting previously acquired knowledge.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Training and Fine-Tuning:</strong>
+                Training involves computing class prototypes using a convolutional feature extractor (based on
+                ResNet18), followed by classification using Euclidean distance. Fine-tuning is performed on query data
+                to improve accuracy on unseen examples.
+            </li>
+            <li>
+                <strong>Evaluation:</strong>
+                The model is evaluated under different shot settings (5-shot, 10-shot, 20-shot) to test its accuracy and
+                generalization. Support and query accuracies are measured to ensure robustness in both high- and
+                low-shot scenarios.
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Events Extraction using DVS</h2>
+        <p>Watch the video for events corresponding to three activities captured using DVS:</p>
+        <video width="600" controls>
+            <source
+                src="./Dataset_Walking_three.mp4"
+                type="video/mp4">
+            <!-- <source
+                src="C:\Users\super\Desktop\PhD\Robotic Perception\Project\Part B\Tarnini_extractions 2\Tarnini_extractions\Videos\Dataset_Boxing_three.avi"
+                type="video/mp4">
+            <source
+                src="C:\Users\super\Desktop\PhD\Robotic Perception\Project\Part B\Tarnini_extractions 2\Tarnini_extractions\Videos\Dataset_Jumping_three.avi"
+                type="video/mp4"> Your browser does not support the video tag. -->
+        </video>
+    </section>
+    <section>
+        <h2>Results</h2>
+        <p>The system demonstrates high accuracy in 20-shot scenarios and struggles with low-shot cases like 5-shot
+            "Walking". The following table summarizes classification accuracy:</p>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Scenario</th>
+                    <th>Support Accuracy (%)</th>
+                    <th>Query Accuracy (%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5-shot Boxing</td>
+                    <td>56.15</td>
+                    <td>20.00</td>
+                </tr>
+                <tr>
+                    <td>5-shot Walking</td>
+                    <td>57.68</td>
+                    <td>0.00</td>
+                </tr>
+                <tr>
+                    <td>5-shot Jumping</td>
+                    <td>55.94</td>
+                    <td>40.00</td>
+                </tr>
+                <tr>
+                    <td>10-shot Jumping</td>
+                    <td>63.50</td>
+                    <td>70.00</td>
+                </tr>
+                <tr>
+                    <td>10-shot Boxing</td>
+                    <td>50.54</td>
+                    <td>30.00</td>
+                </tr>
+                <tr>
+                    <td>10-shot Walking</td>
+                    <td>52.29</td>
+                    <td>50.00</td>
+                </tr>
+                <tr>
+                    <td>20-shot Walking</td>
+                    <td>57.68</td>
+                    <td>50.00</td>
+                </tr>
+                <tr>
+                    <td>20-shot Jumping</td>
+                    <td>49.17</td>
+                    <td>95.00</td>
+                </tr>
+                <tr>
+                    <td>20-shot Boxing</td>
+                    <td>68.95</td>
+                    <td>80.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section>
+        <h2>Figures</h2>
+        <p>The following figures are described in the PDF report:</p>
+        <ul>
+            <li><strong>Figure 1:</strong> Boxing Recognition Example</li> <img
+                src="./Boxing1.png">
+            <li><strong>Figure 2:</strong> Walking Recognition Example</li> <img
+                src="./Qualitative_training_testing_Jump_Box_Support - Copy.png">
+            <li><strong>Figure 3:</strong> Jumping Recognition Example</li> <img
+                src="./Jumping.png">
+        </ul>
+    </section>
+
+    <section>
+        <h2>Demonstration Video</h2>
+        <p>Watch the video demonstration of human activity recognition:</p>
+        <video width="600" controls>
+            <source src= "./Illustrative_Classification.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+
+
+    <footer>
+        <h2>References</h2>
+        <p>For a detailed list of references, consult the attached report.</h2><a
+                href="C:\Users\super\Desktop\PhD\Robotic Perception\Project\Part B\Robotic_Perception_Project_B.pdf"
+                target="_blank"> Download the PDF</a>
+        </p>
+    </footer>
+</body>
+
+</html>
