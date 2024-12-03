@@ -1,5 +1,7 @@
 # Event-Based Few-Shot Learning (FSL) for Human Activity Recognition
 
+You can find the link to the website [here](https://mohammadbelalirshaid.github.io/HAR-FSL/)
+
 ## Project Overview
 This project implements a novel pipeline for human activity classification using event-based data from a Dynamic Vision Sensor (DVS) and Few-Shot Learning (FSL) with Prototypical Networks. The system addresses catastrophic forgetting by preserving support prototypes and uses Euclidean distance for classification between support and query samples.
 
@@ -11,17 +13,17 @@ This project implements a novel pipeline for human activity classification using
 
 ## Results
 ### Accuracy Table
-| Scenario                | Support Accuracy (%) | Query Accuracy (%) |
-|-------------------------|----------------------|--------------------|
-| 5-shot Walking           | 57.68                | 0.00               |
-| 5-shot Boxing            | 56.15                | 20.00              |
-| 5-shot Jumping           | 55.94                | 40.00              |
-| 10-shot Walking          | 52.29                | 50.00              |
-| 10-shot Boxing           | 50.54                | 30.00              |
-| 10-shot Jumping          | 63.50                | 70.00              |
-| 20-shot Walking          | 57.68                | 50.00              |
-| 20-shot Boxing           | 68.95                | 80.00              |
-| 20-shot Jumping          | 49.17                | 95.00              |
+| Scenario        | Support Accuracy (%) | Query Accuracy (%) |
+| --------------- | -------------------- | ------------------ |
+| 5-shot Walking  | 57.68                | 0.00               |
+| 5-shot Boxing   | 56.15                | 20.00              |
+| 5-shot Jumping  | 55.94                | 40.00              |
+| 10-shot Walking | 52.29                | 50.00              |
+| 10-shot Boxing  | 50.54                | 30.00              |
+| 10-shot Jumping | 63.50                | 70.00              |
+| 20-shot Walking | 57.68                | 50.00              |
+| 20-shot Boxing  | 68.95                | 80.00              |
+| 20-shot Jumping | 49.17                | 95.00              |
 
 ## Figures
 - **Boxing Recognition Example**
