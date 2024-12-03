@@ -24,10 +24,14 @@ This project implements a novel pipeline for human activity classification using
 | 20-shot Jumping          | 49.17                | 95.00              |
 
 ## Figures
-Add the following figures:
 - **Boxing Recognition Example**
+  ![Boxing1](https://github.com/user-attachments/assets/8bc394fa-1613-42e4-8d69-cde1673fb8b7)
+
 - **Walking Recognition Example**
+![Qualitative_training_testing_Jump_Box_Support - Copy](https://github.com/user-attachments/assets/80a90f74-9d40-4356-8801-e570f98ae0e8)
+
 - **Jumping Recognition Example**
+![Jumping](https://github.com/user-attachments/assets/db31477e-d86c-4255-9252-4c2b47d0ff24)
 
 ## Python Environment and Requirements
 ### Required Packages
