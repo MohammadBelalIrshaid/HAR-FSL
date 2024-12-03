@@ -1,2 +1,6 @@
 *.avi
 *.mp4
+!Boxing.mp4
+!Walking.mp4
+!Dataset_Jumping_three.mp4
+!Illustrative_Classification.mp4
